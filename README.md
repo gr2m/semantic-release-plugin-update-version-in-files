@@ -2,6 +2,10 @@
 
 > Replace version placeholders with calculated version in any files before publishing
 
+[![@latest](https://img.shields.io/npm/v/semantic-release-plugin-update-version-in-files.svg)](https://www.npmjs.com/package/semantic-release-plugin-update-version-in-files)
+[![Build Status](https://travis-ci.com/gr2m/semantic-release-plugin-update-version-in-files.js.svg?branch=master)](https://travis-ci.com/gr2m/semantic-release-plugin-update-version-in-files.js)
+[![Greenkeeper](https://badges.greenkeeper.io/gr2m/semantic-release-plugin-update-version-in-files.js.svg)](https://greenkeeper.io/)
+
 Example
 
 ```json
