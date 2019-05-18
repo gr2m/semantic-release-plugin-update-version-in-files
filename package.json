@@ -21,7 +21,7 @@
   "devDependencies": {
     "memory-fs": "^0.4.1",
     "prettier": "^1.17.0",
-    "tap": "^13.1.2",
+    "tap": "^14.0.0",
     "semantic-release": "^15.13.3"
   },
   "repository": {
