@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "prettier --check README.md *.js package.json",
+    "lint:fix": "prettier --write README.md *.js package.json",
     "pretest": "npm run -s lint",
     "test": "tap test.js --100",
     "coverage": "tap --coverage-report=html"
