@@ -9,10 +9,7 @@ module.exports = {
       fs = require("fs"),
       glob = require("glob")
     },
-    {
-      cwd,
-      nextRelease: { version }
-    }
+    { cwd, nextRelease: { version } }
   ) {
     // Turn placeholder string into regex
     const searchRegex = new RegExp(placeholder, "g");
