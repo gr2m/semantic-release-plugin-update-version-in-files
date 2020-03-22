@@ -2,9 +2,9 @@ const MemoryFileSystem = require("memory-fs");
 const { test } = require("tap");
 const { prepare } = require(".");
 
-test("defaults", t => {
+test("defaults", (t) => {
   const files = {
-    "version.js": Buffer.from("module.exports = '0.0.0-development'")
+    "version.js": Buffer.from("module.exports = '0.0.0-development'"),
   };
   const fs = new MemoryFileSystem(files);
 
@@ -14,19 +14,19 @@ test("defaults", t => {
       glob: {
         sync() {
           return ["/version.js"];
-        }
-      }
+        },
+      },
     },
     {
       cwd: "",
       nextRelease: {
-        version: "1.2.3"
+        version: "1.2.3",
       },
       logger: {
-        error: message => t.fail(message),
+        error: (message) => t.fail(message),
         log() {},
-        success() {}
-      }
+        success() {},
+      },
     }
   );
 
@@ -35,22 +35,22 @@ test("defaults", t => {
   t.end();
 });
 
-test("no file matches", t => {
+test("no file matches", (t) => {
   try {
     prepare(
       {
-        files: ["DOES_NOT_EXIST.nope"]
+        files: ["DOES_NOT_EXIST.nope"],
       },
       {
         cwd: "",
         nextRelease: {
-          version: "1.2.3"
+          version: "1.2.3",
         },
         logger: {
-          error: message => t.fail(message),
+          error: (message) => t.fail(message),
           log() {},
-          success() {}
-        }
+          success() {},
+        },
       }
     );
     t.fail("Should throw error");
@@ -60,11 +60,11 @@ test("no file matches", t => {
   t.end();
 });
 
-test("files: 'README.md'", t => {
+test("files: 'README.md'", (t) => {
   const files = {
     "README.md": Buffer.from(`# my-project
 
-current version: 0.0.0-development`)
+current version: 0.0.0-development`),
   };
   const fs = new MemoryFileSystem(files);
 
@@ -75,19 +75,19 @@ current version: 0.0.0-development`)
       glob: {
         sync() {
           return ["/README.md"];
-        }
-      }
+        },
+      },
     },
     {
       cwd: "",
       nextRelease: {
-        version: "1.2.3"
+        version: "1.2.3",
       },
       logger: {
-        error: message => t.fail(message),
+        error: (message) => t.fail(message),
         log() {},
-        success() {}
-      }
+        success() {},
+      },
     }
   );
 
@@ -96,12 +96,12 @@ current version: 0.0.0-development`)
   t.end();
 });
 
-test('multiple files: ["README.md", "my-app.js"]', t => {
+test('multiple files: ["README.md", "my-app.js"]', (t) => {
   const files = {
     "README.md": Buffer.from(`# my-project
 
 current version: 0.0.0-development`),
-    "my-app.js": Buffer.from(`module.exports.version = "0.0.0-development";`)
+    "my-app.js": Buffer.from(`module.exports.version = "0.0.0-development";`),
   };
   const fs = new MemoryFileSystem(files);
 
@@ -112,19 +112,19 @@ current version: 0.0.0-development`),
       glob: {
         sync() {
           return ["/README.md", "/my-app.js"];
-        }
-      }
+        },
+      },
     },
     {
       cwd: "",
       nextRelease: {
-        version: "1.2.3"
+        version: "1.2.3",
       },
       logger: {
-        error: message => t.fail(message),
+        error: (message) => t.fail(message),
         log() {},
-        success() {}
-      }
+        success() {},
+      },
     }
   );
 
@@ -141,10 +141,10 @@ current version: 0.0.0-development`),
   t.end();
 });
 
-test("version not found", t => {
+test("version not found", (t) => {
   const files = {
     "foo.js": Buffer.from(`module.exports = require("./bar");`),
-    "bar.js": Buffer.from(`module.exports.version = "0.0.0-development";`)
+    "bar.js": Buffer.from(`module.exports.version = "0.0.0-development";`),
   };
   const fs = new MemoryFileSystem(files);
 
@@ -155,19 +155,19 @@ test("version not found", t => {
       glob: {
         sync() {
           return ["/foo.js", "/bar.js"];
-        }
-      }
+        },
+      },
     },
     {
       cwd: "",
       nextRelease: {
-        version: "1.2.3"
+        version: "1.2.3",
       },
       logger: {
-        error: message => t.fail(message),
+        error: (message) => t.fail(message),
         log() {},
-        success() {}
-      }
+        success() {},
+      },
     }
   );
 
@@ -179,11 +179,11 @@ test("version not found", t => {
   t.end();
 });
 
-test("multiple matches in same file", t => {
+test("multiple matches in same file", (t) => {
   const files = {
     "app.js": Buffer.from(`module.exports.version = "0.0.0-development";
 
-module.exports.logVersion = () => console.log("0.0.0-development");`)
+module.exports.logVersion = () => console.log("0.0.0-development");`),
   };
   const fs = new MemoryFileSystem(files);
 
@@ -193,19 +193,19 @@ module.exports.logVersion = () => console.log("0.0.0-development");`)
       glob: {
         sync() {
           return ["/app.js"];
-        }
-      }
+        },
+      },
     },
     {
       cwd: "",
       nextRelease: {
-        version: "1.2.3"
+        version: "1.2.3",
       },
       logger: {
-        error: message => t.fail(message),
+        error: (message) => t.fail(message),
         log() {},
-        success() {}
-      }
+        success() {},
+      },
     }
   );
 
@@ -219,9 +219,9 @@ module.exports.logVersion = () => console.log("1.2.3");`
   t.end();
 });
 
-test("custom search", t => {
+test("custom search", (t) => {
   const files = {
-    "version.js": Buffer.from("module.exports = '{{VERSION}}'")
+    "version.js": Buffer.from("module.exports = '{{VERSION}}'"),
   };
   const fs = new MemoryFileSystem(files);
 
@@ -232,19 +232,19 @@ test("custom search", t => {
       glob: {
         sync() {
           return ["/version.js"];
-        }
-      }
+        },
+      },
     },
     {
       cwd: "",
       nextRelease: {
-        version: "1.2.3"
+        version: "1.2.3",
       },
       logger: {
-        error: message => t.fail(message),
+        error: (message) => t.fail(message),
         log() {},
-        success() {}
-      }
+        success() {},
+      },
     }
   );
 

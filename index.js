@@ -7,7 +7,7 @@ module.exports = {
       placeholder = "0.0.0-development",
       // Add fs/glob options for testing only
       fs = require("fs"),
-      glob = require("glob")
+      glob = require("glob"),
     },
     { cwd, nextRelease: { version } }
   ) {
@@ -19,14 +19,14 @@ module.exports = {
 
     // Turn files into flat array of matche file paths
     const filePaths = []
-      .concat(...filesNormalized.map(path => glob.sync(join(cwd, path))))
-      .filter(path => fs.statSync(path).isFile());
+      .concat(...filesNormalized.map((path) => glob.sync(join(cwd, path))))
+      .filter((path) => fs.statSync(path).isFile());
 
     if (filePaths.length === 0) {
       throw new Error(`No file matches for ${JSON.stringify(files)}`);
     }
 
-    filePaths.forEach(path => {
+    filePaths.forEach((path) => {
       try {
         const content = fs.readFileSync(path, "utf8");
 
@@ -40,5 +40,5 @@ module.exports = {
         throw new Error(`Could not update "${path}": ${error.message}`);
       }
     });
-  }
+  },
 };
