@@ -26,8 +26,5 @@
     "tap": "^14.0.0",
     "semantic-release": "^17.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gr2m/semantic-release-plugin-update-version-in-files.git"
-  }
+  "repository": "github:gr2m/semantic-release-plugin-update-version-in-files"
 }
