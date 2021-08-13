@@ -4,7 +4,6 @@
 
 [![@latest](https://img.shields.io/npm/v/semantic-release-plugin-update-version-in-files.svg)](https://www.npmjs.com/package/semantic-release-plugin-update-version-in-files)
 [![Build Status](https://travis-ci.com/gr2m/semantic-release-plugin-update-version-in-files.svg?branch=master)](https://travis-ci.com/gr2m/semantic-release-plugin-update-version-in-files)
-[![Greenkeeper](https://badges.greenkeeper.io/gr2m/semantic-release-plugin-update-version-in-files.svg)](https://greenkeeper.io/)
 
 Example
 
