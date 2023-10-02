@@ -23,7 +23,7 @@
   "devDependencies": {
     "memory-fs": "^0.5.0",
     "prettier": "^2.0.1",
-    "tap": "^14.0.0",
+    "tap": "^18.4.2",
     "semantic-release": "^19.0.3"
   },
   "repository": "github:gr2m/semantic-release-plugin-update-version-in-files"
