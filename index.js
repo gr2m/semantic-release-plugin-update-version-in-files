@@ -10,7 +10,7 @@ module.exports = {
       fs = require("fs"),
       glob = require("glob"),
     },
-    { cwd, nextRelease: { version } }
+    { cwd, nextRelease: { version } },
   ) {
     debug("config %o", { files, placeholder });
     debug("nextRelease.version %s", version);
@@ -43,10 +43,11 @@ module.exports = {
 
         debug("Match found in %s", path);
         fs.writeFileSync(path, content.replace(searchRegex, version));
+        /* c8 ignore start: fatal error, that should not happen */
       } catch (error) {
-        /* istanbul ignore next: fatal error, that should not happen */
         throw new Error(`Could not update "${path}": ${error.message}`);
       }
+      /* c8 ignore stop */
     });
   },
 };
