@@ -7,7 +7,7 @@
     "lint": "prettier --check README.md *.js package.json",
     "lint:fix": "prettier --write README.md *.js package.json",
     "pretest": "npm run -s lint",
-    "test": "tap test.js --100",
+    "test": "tap test.js",
     "coverage": "tap --coverage-report=html"
   },
   "keywords": [
