@@ -55,7 +55,7 @@ test("no file matches", (t) => {
     );
     t.fail("Should throw error");
   } catch (error) {
-    t.is(error.message, 'No file matches for ["DOES_NOT_EXIST.nope"]');
+    t.equal(error.message, 'No file matches for ["DOES_NOT_EXIST.nope"]');
   }
   t.end();
 });
@@ -210,7 +210,7 @@ module.exports.logVersion = () => console.log("0.0.0-development");`),
   );
 
   const newContent = fs.readFileSync("/app.js", "utf8");
-  t.equals(
+  t.equal(
     newContent,
     `module.exports.version = "1.2.3";
 
