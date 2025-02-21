@@ -27,7 +27,7 @@ test("defaults", (t) => {
         log() {},
         success() {},
       },
-    }
+    },
   );
 
   const newContent = fs.readFileSync("/version.js", "utf8");
@@ -51,7 +51,7 @@ test("no file matches", (t) => {
           log() {},
           success() {},
         },
-      }
+      },
     );
     t.fail("Should throw error");
   } catch (error) {
@@ -88,7 +88,7 @@ current version: 0.0.0-development`),
         log() {},
         success() {},
       },
-    }
+    },
   );
 
   const newContent = fs.readFileSync("/README.md", "utf8");
@@ -125,18 +125,18 @@ current version: 0.0.0-development`),
         log() {},
         success() {},
       },
-    }
+    },
   );
 
   t.match(
     fs.readFileSync("/README.md", "utf8"),
     /1.2.3/,
-    "Version updated in README.md"
+    "Version updated in README.md",
   );
   t.match(
     fs.readFileSync("/my-app.js", "utf8"),
     /1.2.3/,
-    "Version updated in my-app.js"
+    "Version updated in my-app.js",
   );
   t.end();
 });
@@ -168,13 +168,13 @@ test("version not found", (t) => {
         log() {},
         success() {},
       },
-    }
+    },
   );
 
   t.match(
     fs.readFileSync("/bar.js", "utf8"),
     /1.2.3/,
-    "Version updated in bar.js"
+    "Version updated in bar.js",
   );
   t.end();
 });
@@ -206,7 +206,7 @@ module.exports.logVersion = () => console.log("0.0.0-development");`),
         log() {},
         success() {},
       },
-    }
+    },
   );
 
   const newContent = fs.readFileSync("/app.js", "utf8");
@@ -214,7 +214,7 @@ module.exports.logVersion = () => console.log("0.0.0-development");`),
     newContent,
     `module.exports.version = "1.2.3";
 
-module.exports.logVersion = () => console.log("1.2.3");`
+module.exports.logVersion = () => console.log("1.2.3");`,
   );
   t.end();
 });
@@ -245,7 +245,7 @@ test("custom search", (t) => {
         log() {},
         success() {},
       },
-    }
+    },
   );
 
   const newContent = fs.readFileSync("/version.js", "utf8");

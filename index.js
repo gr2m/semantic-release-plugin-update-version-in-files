@@ -10,7 +10,7 @@ module.exports = {
       fs = require("fs"),
       glob = require("glob"),
     },
-    { cwd, nextRelease: { version } }
+    { cwd, nextRelease: { version } },
   ) {
     debug("config %o", { files, placeholder });
     debug("nextRelease.version %s", version);
