@@ -44,7 +44,7 @@ module.exports = {
         debug("Match found in %s", path);
         fs.writeFileSync(path, content.replace(searchRegex, version));
       } catch (error) {
-        /* istanbul ignore next: fatal error, that should not happen */
+        /* c8 ignore next: fatal error, that should not happen */
         throw new Error(`Could not update "${path}": ${error.message}`);
       }
     });
