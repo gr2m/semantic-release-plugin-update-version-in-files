@@ -1,6 +1,10 @@
 const { join } = require("path");
 const debug = require("debug")("semantic-release:update-version-in-files");
 
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 module.exports = {
   prepare(
     {
@@ -10,13 +14,20 @@ module.exports = {
       fs = require("fs"),
       glob = require("glob"),
     },
-    { cwd, nextRelease: { version } },
+    { cwd, nextRelease: { version }, lastRelease },
   ) {
     debug("config %o", { files, placeholder });
     debug("nextRelease.version %s", version);
+    debug("lastRelease.version %s", lastRelease?.version);
 
-    // Turn placeholder string into regex
-    const searchRegex = new RegExp(placeholder, "g");
+    // Search for placeholder and, when available, the previous release version
+    const searchRegex = new RegExp(
+      [placeholder, lastRelease?.version]
+        .filter(Boolean)
+        .map(escapeRegExp)
+        .join("|"),
+      "g",
+    );
 
     // Normalize files parameter and prefix with root path
     const filesNormalized = Array.isArray(files) ? files : [files];

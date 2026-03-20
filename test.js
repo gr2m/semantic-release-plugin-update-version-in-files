@@ -252,3 +252,39 @@ test("custom search", (t) => {
   t.match(newContent, /1.2.3/, "Version updated in /version.js");
   t.end();
 });
+
+test("replaces lastRelease.version", (t) => {
+  const files = {
+    "version.js": Buffer.from("module.exports = '2.0.0-beta.1'"),
+  };
+  const fs = new MemoryFileSystem(files);
+
+  prepare(
+    {
+      fs,
+      glob: {
+        sync() {
+          return ["/version.js"];
+        },
+      },
+    },
+    {
+      cwd: "",
+      nextRelease: {
+        version: "2.0.0-beta.2",
+      },
+      lastRelease: {
+        version: "2.0.0-beta.1",
+      },
+      logger: {
+        error: (message) => t.fail(message),
+        log() {},
+        success() {},
+      },
+    },
+  );
+
+  const newContent = fs.readFileSync("/version.js", "utf8");
+  t.equal(newContent, "module.exports = '2.0.0-beta.2'");
+  t.end();
+});
