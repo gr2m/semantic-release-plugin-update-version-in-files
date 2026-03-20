@@ -6,6 +6,13 @@ name: Release
       - master
       - next
       - beta
+
+permissions:
+  id-token: write # to enable use of OIDC for trusted publishing and npm provenance
+  contents: write # tags and releases
+  pull-requests: write # comments
+  issues: write # comments
+      
 jobs:
   release:
     name: release
